@@ -4,7 +4,9 @@ import cn.infomany.service.MailService;
 import cn.infomany.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class HelloController {
@@ -21,15 +23,21 @@ public class HelloController {
         return "执行完毕";
     }
 
-    @GetMapping("sendSimpleMail")
+    @GetMapping("/sendSimpleMail")
     public String sendSimpleMail() {
         mailService.sendMail("592466695@qq.com", "开会", "今天下午7点开会");
         return "发送成功";
     }
 
-    @GetMapping("sendHttpMail")
+    @GetMapping("/sendHttpMail")
     public String sendHttpMail() {
         mailService.sendHtmlMail("592466695@qq.com", "helloworld应用", "helloworld<p style='color:red;'>应用<p>");
         return "发送成功";
+    }
+
+    @GetMapping("/restTemplate")
+    public String restTemplate(@RequestParam String url) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(url, String.class);
     }
 }
