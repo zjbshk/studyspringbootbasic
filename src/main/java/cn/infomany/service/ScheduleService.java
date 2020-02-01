@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class ScheduleService {
 
-    @Scheduled(cron = "* * * * * 0-7")
+    @Scheduled(cron = "0 * * * * 0-7")
     public void testSchedule() {
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
     }

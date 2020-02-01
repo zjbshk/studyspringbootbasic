@@ -1,0 +1,6 @@
+spring:
+  mail:
+    host: smtp.139.com
+    username: 18379933714@139.com
+    password: zjb654123_
+    default-encoding: UTF-8
